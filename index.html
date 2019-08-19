@@ -8,24 +8,36 @@
     <h1>Hello World!</h1>
     <script >
         function calcFunc(){
+          var div=document.getElementById('newText');
             var col=parseInt(document.getElementById("column").value);
             var row= parseInt(document.getElementById("row").value);
             var x = parseInt(document.getElementById("x").value);
             var y = parseInt(document.getElementById("y").value);
             var w = parseInt(document.getElementById("w").value);
             var h = parseInt(document.getElementById("h").value);
+            // var text=document.createElement("pos"+ col+ row);
+            // console.log(text)
             for (let i = 0; i <= col; i++) {
                 for (let j = 0; j <= row; j++) {
-                    document.write(`  - {x: ${x + w * j},y: ${y + h * i}}<br>`)
+                  var text = document.createElement("data");
+                  text.id= "pos" + i + j;
+                  div.appendChild(text)
+                  // text.value= (`  - {x: ${x + w * j},y: ${y + h * i}}<br>`);
+                  // console.log(text)
+                  document.getElementById("pos" + i + j).innerHTML = (`  - {x: ${x + w * j},y: ${y + h * i}}<br>`);
+                    // document.write(`  - {x: ${x + w * j},y: ${y + h * i}}<br>`)
                 }
-                document.write(`<br>`)
+                var br = document.createElement("br");
+                div.appendChild(br);
+                // document.write(`<br>`)
             }
+
             // document.write(`test`);
         }
     </script>
-    我們用了 node <script>document.write(process.versions.node)</script>,
-    Chrome <script>document.write(process.versions.chrome)</script>,
-    以及 Electron <script>document.write(process.versions.electron)</script>.
+    <!-- 我們用了 node <script>document.write(process.versions.node)</script>, -->
+    <!-- Chrome <script>document.write(process.versions.chrome)</script>, -->
+    <!-- 以及 Electron <script>document.write(process.versions.electron)</script>. -->
     <form name="data">
         起始X座標:<input id="x" type ="number" onkeyup="value=value.replace(/[^\d]/g,'')"> <br>
         起始Y座標:<input id="y" type ="number" onkeyup="value"> <br>
@@ -35,5 +47,6 @@
         幾列:<input id="row" type ="number" onkeyup="value=value.replace(/[^\d]/g,'')"> <br>
     </form>
     <button onclick="calcFunc()">calc</button>
+    <div id="newText">計算結果:<br></div>
   </body>
 </html>
